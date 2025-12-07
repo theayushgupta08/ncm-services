@@ -33,10 +33,10 @@ function Invoice() {
     return num.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',')
   }
 
-  // Helper function to convert string number to number (removes commas)
-  const parseNumber = (str: string): number => {
-    return parseFloat(str.replace(/,/g, '')) || 0
-  }
+  // // Helper function to convert string number to number (removes commas)
+  // const parseNumber = (str: string): number => {
+  //   return parseFloat(str.replace(/,/g, '')) || 0
+  // }
 
   // Helper function to convert number to words (Indian numbering system)
   const numberToWords = (num: number): string => {
