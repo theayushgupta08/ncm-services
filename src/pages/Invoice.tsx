@@ -418,13 +418,15 @@ function Invoice() {
 
       // Generate filename: first 10 chars of name + _ + invoice number
       // Remove special characters and replace with underscore, pad if needed
+      let shopNamePrefix = isCalcuttaMotors ? 'CM' : (isNewCalcuttaMotors ? 'NCM' : 'CM')
       let namePrefix = receiverName.trim().substring(0, 10).replace(/[^a-zA-Z0-9]/g, '_')
+      // #TODO: Add shop name prefix to the filename
       if (!namePrefix || namePrefix.length === 0) {
         namePrefix = 'Invoice'
       }
       // Clean invoice number (remove special characters)
       const cleanInvoiceNo = invoiceNo.trim().replace(/[^a-zA-Z0-9]/g, '_') || '1'
-      const filename = `${namePrefix}_${cleanInvoiceNo}.pdf`
+      const filename = `${shopNamePrefix}_${namePrefix}_${cleanInvoiceNo}.pdf`
 
       // Save PDF
       pdf.save(filename)
