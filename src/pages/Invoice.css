@@ -1,0 +1,925 @@
+.invoice-container {
+  min-height: calc(100vh - 80px);
+  background: #f5f5f5;
+  padding: 20px;
+}
+
+.invoice-actions {
+  max-width: 1000px;
+  margin: 0 auto 20px;
+  display: flex;
+  gap: 15px;
+  justify-content: flex-end;
+}
+
+.btn-back,
+.btn-print,
+.btn-reset {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-back {
+  background: #6c757d;
+  color: white;
+}
+
+.btn-back:hover {
+  background: #5a6268;
+}
+
+.btn-reset {
+  background: #ffc107;
+  color: #000;
+}
+
+.btn-reset:hover {
+  background: #e0a800;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(255, 193, 7, 0.3);
+}
+
+.btn-print {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+.btn-print:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+}
+
+.invoice-page {
+  max-width: 1000px;
+  margin: 0 auto;
+  background: white;
+  padding: 40px;
+  border: 2px solid #000;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  font-family: 'Arial', sans-serif;
+  color: #000;
+  box-sizing: border-box;
+}
+
+/* Header Section */
+.invoice-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+  border-bottom: 2px solid #333;
+}
+
+.seller-info {
+  flex: 1;
+}
+
+.seller-name {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin: 0 0 10px 0;
+  color: #0672a8;
+  white-space: nowrap;
+}
+
+.seller-address {
+  font-size: 0.95rem;
+  margin: 5px 0;
+  color: #333;
+  line-height: 1.5;
+}
+
+.seller-phone {
+  font-size: 0.95rem;
+  margin: 5px 0;
+  color: #333;
+}
+
+.invoice-details {
+  text-align: right;
+  flex: 1;
+}
+
+.invoice-title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0 0 15px 0;
+  color: #0672a8;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.invoice-meta {
+  font-size: 0.9rem;
+  line-height: 1.8;
+  text-align: right;
+}
+
+.invoice-meta p {
+  margin: 5px 0;
+  color: #333;
+}
+
+.invoice-meta p:not(.invoice-no-field):not(.date-field) {
+  text-align: right;
+}
+
+.date-field {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  flex-wrap: nowrap;
+  white-space: nowrap;
+}
+
+.state-field {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 15px;
+  flex-wrap: nowrap;
+  white-space: nowrap;
+  text-align: right;
+}
+
+.date-input {
+  padding: 5px 8px;
+  border: 1px solid #667eea;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  font-family: inherit;
+  background: #f9f9f9;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.date-input:hover {
+  background: white;
+  border-color: #764ba2;
+}
+
+.date-input:focus {
+  outline: none;
+  border-color: #667eea;
+  background: white;
+  box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.2);
+}
+
+.date-display {
+  color: #333;
+  font-weight: normal;
+}
+
+.invoice-no-field {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  flex-wrap: nowrap;
+  white-space: nowrap;
+}
+
+.invoice-no-input {
+  padding: 5px 8px;
+  border: 1px solid #667eea;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  font-family: inherit;
+  background: #f9f9f9;
+  color: #333;
+  transition: all 0.3s ease;
+  width: 120px;
+}
+
+.invoice-no-input:hover {
+  background: white;
+  border-color: #764ba2;
+}
+
+.invoice-no-input:focus {
+  outline: none;
+  border-color: #667eea;
+  background: white;
+  box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.2);
+}
+
+.invoice-no-input.error {
+  border-color: #dc3545;
+  background-color: #fff5f5;
+}
+
+.invoice-no-input.error:focus {
+  border-color: #dc3545;
+  box-shadow: 0 0 0 2px rgba(220, 53, 69, 0.2);
+}
+
+.invoice-no-input::placeholder {
+  color: #999;
+  font-style: italic;
+}
+
+.error-message-inline {
+  color: #dc3545;
+  font-size: 0.75rem;
+  margin-left: 5px;
+  display: inline-block;
+}
+
+/* Receiver Section */
+.receiver-section {
+  margin-bottom: 30px;
+  padding: 15px;
+  background: #f9f9f9;
+  border: 1px solid #ddd;
+}
+
+.text-white-blue-bg {
+    color: #fff;              /* white text */
+    background-color: #0672a8; /* blue background */
+    padding: 8px 12px;        /* optional */
+    border-radius: 4px;       /* optional */
+  }
+  
+
+.receiver-title {
+  font-size: 1rem;
+  font-weight: 700;
+  margin: 0 0 15px 0;
+  text-transform: uppercase;
+}
+
+.receiver-info {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  font-size: 0.9rem;
+}
+
+.receiver-info p {
+  margin: 5px 0;
+  color: #333;
+}
+
+.receiver-field {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.receiver-input {
+  padding: 8px 10px;
+  border: 1px solid #667eea;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  font-family: inherit;
+  background: white;
+  color: #333;
+  transition: all 0.3s ease;
+  width: 100%;
+  margin-top: 5px;
+}
+
+.receiver-input:hover {
+  border-color: #764ba2;
+}
+
+.receiver-input:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.2);
+}
+
+.receiver-input::placeholder {
+  color: #999;
+  font-style: italic;
+}
+
+.required-asterisk {
+  color: #dc3545;
+  font-weight: 700;
+  margin-left: 3px;
+  cursor: help;
+}
+
+.receiver-input.error {
+  border-color: #dc3545;
+  background-color: #fff5f5;
+}
+
+.receiver-input.error:focus {
+  border-color: #dc3545;
+  box-shadow: 0 0 0 2px rgba(220, 53, 69, 0.2);
+}
+
+.error-message {
+  color: #dc3545;
+  font-size: 0.8rem;
+  margin-top: 3px;
+  display: block;
+}
+
+.receiver-readonly {
+  display: inline-block;
+  padding: 8px 10px;
+  margin-top: 5px;
+  color: #333;
+  font-size: 0.9rem;
+  background: #f0f0f0;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-weight: 500;
+}
+
+/* Items Table */
+.items-section {
+  margin-bottom: 30px;
+}
+
+.items-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+  table-layout: fixed;
+}
+
+.items-table thead {
+  background: #0672a8;
+  color: white;
+}
+
+.items-table th {
+  padding: 12px 8px;
+  text-align: left;
+  font-weight: 700;
+  border: 2px solid #000;
+  text-transform: uppercase;
+}
+
+/* Column widths: Description=35%, HSN SAC=15%, Qty=5%, Rate=20%, Amount=25% */
+.items-table th:nth-child(1),
+.items-table td:nth-child(1) {
+  width: 40%;
+}
+
+.items-table th:nth-child(2),
+.items-table td:nth-child(2) {
+  width: 15%;
+}
+
+.items-table th:nth-child(3),
+.items-table td:nth-child(3) {
+  width: 10%;
+}
+
+.items-table th:nth-child(4),
+.items-table td:nth-child(4) {
+  width: 15%;
+}
+
+.items-table th:nth-child(5),
+.items-table td:nth-child(5) {
+  width: 20%;
+}
+
+.items-table td {
+  padding: 10px 8px;
+  border: 1.5px solid #000;
+  color: #333;
+  height: 40px;
+  vertical-align: top;
+}
+
+.items-table tbody tr {
+  height: 40px;
+  min-height: 40px;
+}
+
+.items-table tbody tr:nth-child(even) {
+  background: #f9f9f9;
+}
+
+.item-input {
+  width: 100%;
+  padding: 6px 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  font-family: inherit;
+  background: white;
+  color: #333;
+  transition: all 0.3s ease;
+  min-height: 20px;
+  height: 20px;
+  box-sizing: border-box;
+}
+
+.item-input:hover {
+  border-color: #667eea;
+}
+
+.item-input:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.2);
+}
+
+.item-input::placeholder {
+  color: #999;
+  font-style: italic;
+}
+
+.amount-cell {
+  text-align: right;
+  font-weight: 500;
+  color: #333;
+  padding: 6px 8px;
+  height: 40px;
+  vertical-align: top;
+}
+
+/* Financial Section */
+.financial-section {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30px;
+  gap: 30px;
+}
+
+.amount-words {
+  flex: 1;
+  padding: 15px;
+  background: #f9f9f9;
+  border: 1px solid #ddd;
+  font-size: 0.9rem;
+}
+
+.amount-words p {
+  margin: 5px 0;
+  color: #333;
+}
+
+.financial-summary {
+  flex: 1;
+  border: 1px solid #ddd;
+}
+
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 15px;
+  border-bottom: 1px solid #ddd;
+  font-size: 0.9rem;
+  color: #333;
+  align-items: center;
+  flex-wrap: nowrap;
+  white-space: nowrap;
+}
+
+.summary-row span {
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.tax-input {
+  width: 60px;
+  padding: 4px 6px;
+  border: 1px solid #667eea;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  font-family: inherit;
+  background: #f9f9f9;
+  text-align: center;
+  margin: 0 5px;
+  transition: all 0.3s ease;
+}
+
+.tax-input:hover {
+  background: white;
+  border-color: #764ba2;
+}
+
+.tax-input:focus {
+  outline: none;
+  border-color: #667eea;
+  background: white;
+  box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.2);
+}
+
+.summary-row:last-child {
+  border-bottom: none;
+}
+
+.total-row {
+  background: #f0f0f0;
+  font-weight: 700;
+  font-size: 1rem;
+  border-top: 2px solid #333;
+}
+
+/* Footer Section */
+.footer-section {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30px;
+  gap: 30px;
+}
+
+.bank-details {
+  flex: 1;
+  padding: 15px;
+  background: #f9f9f9;
+  border: 1px solid #ddd;
+  font-size: 0.9rem;
+}
+
+.bank-details h4 {
+  margin: 0 0 10px 0;
+  color: #000;
+  font-size: 1rem;
+}
+
+.bank-details p {
+  margin: 5px 0;
+  color: #333;
+  line-height: 1.6;
+}
+
+.signature-section {
+  flex: 1;
+  text-align: right;
+}
+
+.certification {
+  font-size: 0.85rem;
+  margin: 0 0 30px 0;
+  color: #333;
+  font-style: italic;
+}
+
+.signature-box {
+  margin-top: 60px;
+}
+
+.for-company {
+  font-size: 0.9rem;
+  margin: 0 0 10px 0;
+  color: #0672a8;
+  font-weight: 600;
+}
+
+.signature-line {
+  border-top: 1px solid #000;
+  margin: 50px 0 10px;
+  width: 200px;
+  margin-left: auto;
+}
+
+.signature-space {
+  height: 50px;
+}
+
+.signatory {
+  font-size: 0.85rem;
+  margin: 0;
+  color: #333;
+}
+
+/* Contact and Terms */
+.contact-terms-section {
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid #ddd;
+}
+
+.contact-info {
+  margin-bottom: 20px;
+  font-size: 0.85rem;
+  color: #333;
+  line-height: 1.6;
+}
+
+.terms-conditions {
+  font-size: 0.85rem;
+}
+
+.terms-conditions h4 {
+  margin: 0 0 10px 0;
+  color: #000;
+  font-size: 0.95rem;
+}
+
+.terms-conditions ul {
+  margin: 0;
+  padding-left: 20px;
+  color: #333;
+  line-height: 1.8;
+}
+
+.terms-conditions li {
+  margin: 5px 0;
+}
+
+/* Print Styles */
+@media print {
+  .invoice-container {
+    background: white;
+    padding: 0;
+  }
+
+  .invoice-actions {
+    display: none;
+  }
+
+  .invoice-page {
+    box-shadow: none;
+    padding: 20px;
+  }
+
+  .invoice-container {
+    min-height: auto;
+  }
+
+  .date-input,
+  .tax-input {
+    display: none;
+  }
+
+  .item-input {
+    border: none !important;
+    background: transparent !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    display: inline !important;
+    color: #333 !important;
+    box-shadow: none !important;
+    width: auto !important;
+  }
+
+  .item-input::placeholder {
+    color: transparent;
+  }
+
+  .receiver-input,
+  .invoice-no-input {
+    border: none !important;
+    background: transparent !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    margin-left: 5px !important;
+    display: inline !important;
+    color: #333 !important;
+    box-shadow: none !important;
+    width: auto !important;
+  }
+
+  .invoice-no-input::placeholder,
+  .receiver-input::placeholder {
+    color: transparent;
+  }
+
+  .date-display {
+    display: inline;
+  }
+
+  .date-display::before {
+    content: '';
+  }
+
+  .summary-row span {
+    display: flex;
+    align-items: center;
+  }
+
+  .receiver-field {
+    display: block;
+  }
+
+  .receiver-field strong {
+    display: inline;
+    margin-right: 5px;
+  }
+
+  .receiver-input {
+    border: none !important;
+    background: transparent !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    margin-left: 5px !important;
+    display: inline !important;
+    color: #333 !important;
+    box-shadow: none !important;
+    width: auto !important;
+  }
+
+  .receiver-input::placeholder {
+    color: transparent;
+  }
+
+  .receiver-readonly {
+    background: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    margin-left: 5px !important;
+    display: inline !important;
+  }
+
+  .required-asterisk,
+  .error-message,
+  .error-message-inline {
+    display: none !important;
+  }
+
+  .receiver-input.error,
+  .invoice-no-input.error {
+    border: none !important;
+    background: transparent !important;
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .invoice-page {
+    padding: 20px;
+  }
+
+  .invoice-header {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .invoice-details {
+    text-align: left;
+  }
+
+  .financial-section {
+    flex-direction: column;
+  }
+
+  .footer-section {
+    flex-direction: column;
+  }
+
+  .receiver-info {
+    grid-template-columns: 1fr;
+  }
+
+  .items-table {
+    font-size: 0.8rem;
+  }
+
+  .items-table th,
+  .items-table td {
+    padding: 8px 5px;
+  }
+}
+
+/* PDF Generation Styles - Add page border */
+.pdf-generation .invoice-page {
+  border: 3px solid #000 !important;
+  box-sizing: border-box !important;
+  margin: 0 !important;
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+/* PDF Generation Styles - Hide input labels/borders */
+/* Add page border during PDF generation */
+.pdf-generation .invoice-page {
+  border: 2px solid #000 !important;
+  box-sizing: border-box !important;
+}
+
+.pdf-generation .receiver-input,
+.pdf-generation .invoice-no-input,
+.pdf-generation .date-input,
+.pdf-generation .tax-input,
+.pdf-generation .item-input {
+  border: none !important;
+  background: transparent !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  box-shadow: none !important;
+  outline: none !important;
+  height: auto !important;
+  min-height: 0 !important;
+}
+
+/* Ensure fixed row heights during PDF generation */
+.pdf-generation .items-table tbody tr {
+  height: 40px !important;
+  min-height: 40px !important;
+}
+
+.pdf-generation .items-table td {
+  height: 40px !important;
+  min-height: 40px !important;
+  vertical-align: top !important;
+}
+
+.pdf-generation .amount-cell {
+  height: 40px !important;
+  min-height: 40px !important;
+  vertical-align: top !important;
+}
+
+.pdf-generation .receiver-input::placeholder,
+.pdf-generation .invoice-no-input::placeholder,
+.pdf-generation .item-input::placeholder,
+.pdf-generation .date-input::placeholder,
+.pdf-generation .tax-input::placeholder {
+  color: transparent !important;
+  opacity: 0 !important;
+}
+
+/* Ensure input values are visible */
+.pdf-generation input:not(:placeholder-shown),
+.pdf-generation input[value]:not([value=""]),
+.pdf-generation .receiver-input:not(:placeholder-shown),
+.pdf-generation .invoice-no-input:not(:placeholder-shown),
+.pdf-generation .item-input:not(:placeholder-shown),
+.pdf-generation .date-input:not(:placeholder-shown),
+.pdf-generation .tax-input:not(:placeholder-shown) {
+  color: #000 !important;
+  opacity: 1 !important;
+}
+
+.pdf-generation .required-asterisk,
+.pdf-generation .error-message,
+.pdf-generation .error-message-inline {
+  display: none !important;
+}
+
+.pdf-generation .receiver-input.error,
+.pdf-generation .invoice-no-input.error {
+  border: none !important;
+  background: transparent !important;
+}
+
+/* Style for temporary span elements that replace inputs during PDF generation */
+.pdf-input-value {
+  display: inline;
+  color: #000;
+  font-size: inherit;
+  font-family: inherit;
+  white-space: nowrap;
+}
+
+/* Ensure PDF generation keeps elements on one line */
+.pdf-generation .state-field,
+.pdf-generation .summary-row {
+  flex-wrap: nowrap !important;
+  white-space: nowrap !important;
+}
+
+/* Invoice Number and Date should be on separate lines in PDF */
+.pdf-generation .invoice-no-field,
+.pdf-generation .date-field {
+  display: block !important;
+  flex-wrap: wrap !important;
+  white-space: normal !important;
+  text-align: right !important;
+  line-height: 1.5 !important;
+}
+
+.pdf-generation .invoice-no-field strong,
+.pdf-generation .date-field strong,
+.pdf-generation .summary-row span {
+  white-space: nowrap !important;
+  display: inline !important;
+}
+
+/* Ensure invoice number and date values align with labels */
+.pdf-generation .invoice-no-field .pdf-input-value,
+.pdf-generation .date-field .pdf-input-value {
+  vertical-align: baseline !important;
+  display: inline !important;
+  line-height: inherit !important;
+}
+
+/* Ensure CGST and SGST tax input values align with labels */
+.pdf-generation .summary-row .tax-input {
+  vertical-align: baseline !important;
+}
+
+.pdf-generation .summary-row .pdf-input-value {
+  vertical-align: baseline !important;
+  display: inline !important;
+  line-height: inherit !important;
+}
+
+.pdf-generation .state-field {
+  display: inline-flex !important;
+  flex-wrap: nowrap !important;
+}
+
+.pdf-generation .invoice-meta p {
+  white-space: nowrap !important;
+}
+

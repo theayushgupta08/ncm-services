@@ -1,0 +1,236 @@
+.home-container {
+  min-height: calc(100vh - 80px);
+}
+
+/* Hero Section */
+.hero-section {
+  background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+  padding: 80px 20px;
+  text-align: center;
+  color: white;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.hero-content {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.company-name {
+  font-size: 4rem;
+  font-weight: 700;
+  margin: 0 0 20px 0;
+  letter-spacing: 2px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  animation: fadeInDown 0.8s ease-out;
+}
+
+.company-tagline {
+  font-size: 1.5rem;
+  font-weight: 300;
+  margin: 0 0 30px 0;
+  opacity: 0.95;
+  animation: fadeInUp 0.8s ease-out 0.2s both;
+}
+
+.hero-divider {
+  width: 100px;
+  height: 4px;
+  background: linear-gradient(90deg, transparent, #fff, transparent);
+  margin: 0 auto;
+  border-radius: 2px;
+  animation: fadeIn 1s ease-out 0.4s both;
+}
+
+/* Bill Section */
+.bill-section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 80px 20px;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: white;
+  margin: 0 0 15px 0;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.section-subtitle {
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0;
+}
+
+/* Cards Container */
+.cards-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 40px;
+  margin-top: 40px;
+}
+
+/* Bill Card */
+.bill-card {
+  background: white;
+  border-radius: 20px;
+  padding: 40px 30px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.bill-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 5px;
+  background: linear-gradient(90deg, #667eea, #764ba2);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+
+.bill-card:hover::before {
+  transform: scaleX(1);
+}
+
+.bill-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.card-icon {
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 25px;
+  color: white;
+  transition: all 0.3s ease;
+}
+
+.bill-card:hover .card-icon {
+  transform: scale(1.1) rotate(5deg);
+  box-shadow: 0 10px 20px rgba(102, 126, 234, 0.4);
+}
+
+.card-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #1e3c72;
+  margin: 0 0 15px 0;
+  transition: color 0.3s ease;
+}
+
+.bill-card:hover .card-title {
+  color: #667eea;
+}
+
+.card-description {
+  font-size: 1rem;
+  color: #666;
+  margin: 0 0 20px 0;
+  line-height: 1.6;
+}
+
+.card-arrow {
+  font-size: 2rem;
+  color: #667eea;
+  font-weight: 300;
+  transition: all 0.3s ease;
+  margin-top: auto;
+}
+
+.bill-card:hover .card-arrow {
+  transform: translateX(10px);
+  color: #764ba2;
+}
+
+/* Animations */
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .company-name {
+    font-size: 2.5rem;
+  }
+
+  .company-tagline {
+    font-size: 1.2rem;
+  }
+
+  .section-title {
+    font-size: 2rem;
+  }
+
+  .cards-container {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .bill-card {
+    padding: 30px 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-section {
+    padding: 60px 20px;
+  }
+
+  .company-name {
+    font-size: 2rem;
+  }
+
+  .bill-section {
+    padding: 60px 20px;
+  }
+}
+
